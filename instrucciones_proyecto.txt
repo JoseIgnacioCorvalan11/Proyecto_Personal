@@ -1,0 +1,30 @@
+Login/Register:
+-Validar todo menos confirm password.
+-Validar el name y last name con len.
+-Validar todo lo demas con REGEX y la contraseña con bcrypt para hacer la contraseña en un hash.
+-ver si los botones de submit funcionan para redireccionar al dashboard(El login y register).
+
+Dashboard:
+-Hacer que le de la bienvenida al usuario logeado/registrado(su nombre).
+-dos botones que hacen los siguiente: uno es para ir a escuchar/descargar musica, otro es para contribuir musica y que aparezca en la seccion de escuchar musica.
+-Las reglas "reales"(son imaginarias xD) para el sitio web.
+-que se pueda ver los usuarios "conectados"(AKA el que se registro/logeo, en este hay links para ver la musica que contribuyo el usuario/su nombre y apellido).
+-un boton que me falto poner en el wireframe, sorry profe :l, que es para quitar/irse de la sesion xd.
+
+
+Listado Musica:
+-h1 que diga la musica disponible.
+-h2 que diga el nombre de la musica.
+-un boton para descargar la musica.
+-una barra para escuchar la musica.
+-un boton para regresar a la pagina de dashboard.
+
+Contribuir Musica:
+-h1 que dice sobre contribuir a la maraton musical.
+-haciendo clic al boton o barrita blanca, te deja poner tu archivo mp4.
+-boton para enviar el mp4 y se vaya hacia Listado Musica! :].
+
+{Usuario}:
+-el h1 y el nombre de la la pagina se cambia a el nombre del usuario que se le hico clic en el link con jinja.
+-una tabla para ver el primer nombre del usuario, ultimo nombre, y el nombre de la musica que contribuyo con jinja.
+-un boton para ir al dashboard y otro para quitar la sesion.
