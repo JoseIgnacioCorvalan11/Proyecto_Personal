@@ -20,6 +20,18 @@ def ingresado_exitosamente():
     }
     return render_template('music_dashboard.html')
 
+@app.route('/listen')
+def listen_music():
+    return render_template('listen_download.html')
+
+@app.route('/contribute')
+def contributing():
+    return render_template('contribute_music.html')
+
+@app.route('/view_user')
+def view_user():
+    return render_template('view_user_music.html')
+
 
 @app.route('/registrarse', methods=['POST'])
 def registro():
