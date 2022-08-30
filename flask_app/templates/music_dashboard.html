@@ -9,7 +9,9 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <h1>Bienvenido {} a Musicaton.cl!</h1>
+    {% for one_user in Proyecto_one %}
+    <h1>Bienvenido {{one_user.name}} a Musicaton.cl!</h1>
+    {% endfor %}
     <br>
     <a class="btn btn-primary" href="/listen">Descargar Musica</a>
     <br>

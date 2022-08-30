@@ -21,7 +21,13 @@ def ingresado_exitosamente():
     return render_template('music_dashboard.html')
 
 @app.route('/listen')
-def listen_music():
+def listen_music(name_music, music):
+    if 'id' not in session:
+        return redirect('/main')
+    data = {
+        "name_musica" : name_music,
+        "musica" : str(music)
+    }
     return render_template('listen_download.html')
 
 @app.route('/contribute')
