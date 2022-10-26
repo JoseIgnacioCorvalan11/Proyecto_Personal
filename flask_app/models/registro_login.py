@@ -12,7 +12,7 @@ class Proyecto:
         self.id = data['id']
         self.name = data['name']
         self.last_name = data['last_name']
-        self.email = data['email']
+        self.mail = data['mail']
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -22,7 +22,7 @@ class Proyecto:
         fecha_actual = datetime.datetime.now()
 
         valido = True
-        if not EMAIL_REGEX.match(formulario['email']):
+        if not EMAIL_REGEX.match(formulario['mail']):
             flash("Email no valido! ERROR ERROR!!!")
             valido = False
         if len(formulario['name']) < 3:
@@ -56,7 +56,7 @@ class Proyecto:
 
     @classmethod
     def save(cls, data):
-        query="INSERT INTO registro_login (name , last_name, email, password) VALUES ( %(name)s , %(last_name)s , %(email)s , %(password)s );"
+        query="INSERT INTO registro_login (name , last_name, mail, password) VALUES ( %(name)s , %(last_name)s , %(mail)s , %(password)s );"
         return connectToMySQL('schema_musica').query_db( query, data )
 
     @classmethod
@@ -72,7 +72,7 @@ class Proyecto:
     @classmethod
     def getEmail(cls, data):
         print(data, "Esto esta en el data")
-        query = "SELECT * FROM registro_login WHERE email = %(email)s;"
+        query = "SELECT * FROM registro_login WHERE mail = %(mail)s;"
         results = connectToMySQL('schema_musica').query_db( query, data )
         if len(results) < 1:
             return False

@@ -9,14 +9,22 @@
     <title>Listado Musica</title>
 </head>
 <body>
+    <div class="p-3 mb-2 bg-info text-dark">
+    <div class="container">
     <header>Musica Disponible:</header>
-    {% if Musica_all %}
-        {% for one_music in Musica_all %}
+    {% if toda_music_data %}
+        {% for one_music in toda_music_data %}
             {{one_music.name_music}}
             <br>
-            <audio href="{{one_music.music}}" controls="controls" type="audio/mpeg" preload="preload"></audio>
+            <br>
+            <audio controls>
+            <source src="{{ url_for('static', filename=one_music.music)}}" type="audio/mp3">
+            </audio>
+            <a href="{{ url_for('static', filename=one_music.music)}}" download="{{one_music.music}}" class="btn btn-primary">Download</a>
         {% endfor %}
     {% endif %}
     <a href="/dashboard" class="btn btn-primary">Regresar</a><br><a href="/destroy" class="btn btn-primary">Logout</a>
+    </div>
+    </div>
 </body>
 </html>

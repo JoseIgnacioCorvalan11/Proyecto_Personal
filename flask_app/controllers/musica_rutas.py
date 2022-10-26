@@ -1,8 +1,12 @@
+import os
+from fileinput import filename
 from flask_app.models.registro_login import Proyecto
+from flask_app.models.datos_musica import Musica
 from flask_bcrypt import Bcrypt   
 from flask_app import app
 bcrypt = Bcrypt(app) 
 from flask_app import app
+from werkzeug.utils import secure_filename
 from flask import render_template,redirect,request,session,flash
 
 
@@ -18,25 +22,51 @@ def ingresado_exitosamente():
     data = {
         "id": session['id']
     }
-    return render_template('music_dashboard.html')
+    Usuario_all = Proyecto.get_one(data)
+    return render_template('music_dashboard.html', Usuario_all=Usuario_all)
 
-@app.route('/listen')
-def listen_music(name_music, music):
+@app.route('/listen', methods=['POST', 'GET'])
+def listen_music():
     if 'id' not in session:
         return redirect('/main')
-    data = {
-        "name_musica" : name_music,
-        "musica" : str(music)
-    }
-    return render_template('listen_download.html')
+    toda_music_data = Musica.get_all()
+    if request.method == 'POST':
+        f = request.files['music']
+        filename = secure_filename(f.filename)
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        data = {
+            "name_music":{filename},
+            "music": f"{filename}",
+            "registro_login_join": session['id']
+        }
+        guardar_track = Musica.save(data)
+        return redirect('/listen')
+    # music_data = data['music']
+    # data = {
+    #     "name_music" : name_music_data,
+    #     "music" : str(music_data)
+    # }
+    # llamar_musica = Musica.get_all(data)
 
-@app.route('/contribute')
+    return render_template('listen_download.html', toda_music_data=toda_music_data)
+
+@app.route('/contribute', methods=['POST' , 'GET'] )
 def contributing():
+    if request.method == 'POST':
+        # data = {
+        #     "music": str(music)
+        # }
+        music_data = Musica.save(request.form)
+        return music_data
     return render_template('contribute_music.html')
 
 @app.route('/view_user')
-def view_user():
-    return render_template('view_user_music.html')
+def view_user(id):
+    data ={
+        "id" : id
+    }
+    view_all = Proyecto.get_one(data)
+    return redirect('/user/<int:id>')
 
 
 @app.route('/registrarse', methods=['POST'])
@@ -49,7 +79,7 @@ def registro():
         data = {
             "name" : request.form['name'],
             "last_name" : request.form['last_name'],
-            "email" : request.form['email'],
+            "mail" : request.form['mail'],
             "password" : bcrypt.generate_password_hash(request.form['password']),
             "confirm_password" : request.form['confirm_password'],
             "date" : request.form['date']
@@ -63,7 +93,7 @@ def registro():
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
-        print(request.form['email'])
+        print(request.form['mail'])
         usuario = Proyecto.getEmail(request.form)
         if not usuario:
             flash("Este dato esta erroneo")
@@ -86,4 +116,5 @@ def view(id):
         "id": id
     }
     view_all = Proyecto.get_one(data)
-    return render_template('view_user_music.html', view_all=view_all)
+    musica_all = Musica.get_one(data)
+    return render_template('view_user_music.html', view_all=view_all, musica_all=musica_all)

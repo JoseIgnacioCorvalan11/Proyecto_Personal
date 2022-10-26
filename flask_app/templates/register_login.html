@@ -9,59 +9,67 @@
     <title>Login/Registration</title>
 </head>
 <body>
+
+    <div class="container">
+    <div class="p-3 mb-2 bg-primary text-white">
     <h1>Welcome!</h1>
-    <div class="flex-column">
-        <form action="/registrarse" method="post">
-        {% with messages = get_flashed_messages() %}     <!-- declara una variable llamada mensajes-->
-            {% if messages %}                            <!-- comprobar si hay algún mensaje -->
-                {% for message in messages %}            <!-- recorrer los mensajes -->
-                    <p>{{message}}</p>                   <!-- muestra cada mensaje en una etiqueta de párrafo -->
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <h2>Register:</h2>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Name: </span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="name">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Last Name: </span>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="last_name">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email: </label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password:</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-            </div>
-            <!-- <div class="input-group">
-                <span class="input-group-text"> Deseo NO suscribirme a pyrocynical</span>
-                <input class="form-check-input mt-0" type="radio" value="0" aria-label="Radio button for following text input" name="radio">
-            </div> -->
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Confirm Password:</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="confirm_password">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Cumpleaños?:</span>
-                <input class="form-control" type="date" name="date">
-                <input type="submit" class="btn btn-primary">Register</input>
-            </div>
-        </form>
+        <div class="row">
+            <div class="col">
+                <form action="/registrarse" method="post">
+                {% with messages = get_flashed_messages() %}     <!-- declara una variable llamada mensajes-->
+                    {% if messages %}                            <!-- comprobar si hay algún mensaje -->
+                        {% for message in messages %}            <!-- recorrer los mensajes -->
+                            <p>{{message}}</p>                   <!-- muestra cada mensaje en una etiqueta de párrafo -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <h2>Register:</h2>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Name: </span>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Last Name: </span>
+                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="last_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email: </label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="mail">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                    </div>
+                    <!-- <div class="input-group">
+                        <span class="input-group-text"> Deseo NO suscribirme a pyrocynical</span>
+                        <input class="form-check-input mt-0" type="radio" value="0" aria-label="Radio button for following text input" name="radio">
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="confirm_password">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Cumpleaños?:</span>
+                        <input class="form-control" type="date" name="date">
+                        <input type="submit" class="btn btn-primary"></input>
+                    </div>
+                    </form>
         </div>
-        <div class="flex-column">
-            <form action="/login" method="post">
-                <h3>Login:</h3>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address:</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required >
+                <div class="col">
+                    <form action="/login" method="post">
+                        <h3>Login:</h3>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address:</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="mail" required >
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+                            <input type="submit" class="btn btn-primary"></input>
+                        </div>
+                    </form>
+                    </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password:</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
-                    <input type="submit" class="btn btn-primary">Login</input>
-                </div>
-            </form>
+            </div>
         </div>

@@ -9,20 +9,21 @@
     <title>Dashboard</title>
 </head>
 <body>
-    {% for one_user in Proyecto_one %}
-    <h1>Bienvenido {{one_user.name}} a Musicaton.cl!</h1>
-    {% endfor %}
-    <br>
+    <div class="p-3 mb-2 bg-secondary text-white">
+    <div class="container">
+    <h1>Bienvenido {{Usuario_all.name}} a Musicaton.cl!</h1>
+    <span></span>
     <a class="btn btn-primary" href="/listen">Descargar Musica</a>
-    <br>
+    <span></span>
     <a class="btn btn-primary" href="/contribute">Contribuir Musica</a>
-    <br>
+    <span></span>
     <a class="btn btn-primary" href="/destroy">LogOut</a>
-    <br>
-    <p>Reglas:Esta Pagina Web es solo para tu proyecto personal/privado de videojuegos. Por Favor no hagas lo siguiente:
+    <span></span>
+    <p>Reglas:
+        Esta Pagina Web es solo para tu proyecto personal/privado de videojuegos. Por Favor no hagas lo siguiente:
         1. No Hagas tu videojuego público, o si no lo más probable es que te pongas en problemas con la agencia de videojuegos(Nintendo,Playstation,Xbox) y no queremos eso para ti, asi que respeta las reglas!!!
         2. No pagarle a personas por la musica de aca, AKA Scammear. Esta musica es para escuchar de todos los oídos que visiten nuestra pagina web/revisitar la musica de los juegos que jugaron los usuarios.
-        3. Cualquier intento de Hackeo resultara en rastreo Anti-VPN y le avisaremos a su policia locla de ir por usted a arrestarlo.
+        3. Cualquier intento de Hackeo resultara en rastreo Anti-VPN y le avisaremos a su policia local de ir por usted a arrestarlo.
         4. NO SE META CON NUESTROS USUARIOS!!!
         Cualquier Blackmail,extorsion,etc comprobado por nuestro equipo de un usuario a otro resultara en tambien rastreal al malon, e ser arrestado por su policia local, demás de un IP Ban Anti-VPN del sitio.
         No te metas con nosotros.
@@ -30,5 +31,24 @@
         Gracias y Feliz Maraton Musical!!!
     </p>
     <br>
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Usuarios Conectados:</th>
+            <th scope="col">Nombre:</th>
+            <th scope="col">Acciones:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th></th>
+            <td>{{Usuario_all.name}}</td>
+            <td><a href="/user/{{Usuario_all.id}}" class="btn btn-primary">Ver Perfil</a></td>
+            </tr>
+            <tr>
+        </tbody>
+    </table>
+    </div>
+    </div>
 </body>
 </html>

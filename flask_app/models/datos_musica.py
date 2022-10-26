@@ -7,16 +7,17 @@ class Musica:
         self.music = data['music']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.registro_login_join = data['registro_login_join']
 
     @classmethod
     def save(cls, data):
-        query="INSERT INTO musica_tabla (name_music , music) VALUES ( %(name_music)s , %(music)s );"
+        query="INSERT INTO musica_tabla (name_music , music, registro_login_join) VALUES ( %(name_music)s , %(music)s , %(registro_login_join)s);"
         return connectToMySQL('schema_musica').query_db( query, data )
 
     @classmethod
-    def get_all(cls, name_music, music):
-        query ="SELECT * FROM musica_tabla WHERE (name_music = %(name_music)s) and (music = %(music)s);"
-        results = connectToMySQL('schema_musica').query_db(query, id)
+    def get_all(cls):
+        query ="SELECT * FROM musica_tabla;"
+        results = connectToMySQL('schema_musica').query_db(query)
         print("QUE HAY AQUI?", results)
         musica_result = []
         for musica in results:
@@ -25,7 +26,7 @@ class Musica:
 
     @classmethod
     def get_one(cls, data):
-        query="SELECT * FROM musica_tabla WHERE name_music = %(name_music)s;"
+        query="SELECT * FROM musica_tabla WHERE registro_login_join = %(id)s;"
         results = connectToMySQL('schema_musica').query_db(query, data)
         print("QUE HAY AQUI?", results)
         if len(results) < 1:
